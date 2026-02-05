@@ -1,0 +1,35 @@
+name: Main CI workflow
+
+on:
+  push:
+   branches:
+    - main
+  pull_request:
+   branches:
+    - main
+
+jobs:
+  main-pipeline:
+   runs-on: ubuntu-latest
+   steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    - name: setup node.js
+      uses: actions/setup-node@v3
+    - name: initialize pnpm
+      run: npm install -g pnpm
+
+    - name: install dependencies
+      run: pnpm install
+
+    - name: Run lint
+      run: pnpm run lint
+
+    - name: Run format
+      run: pnpm run format
+
+    - name: Run tests
+      run: pnpm run test
+      
+    - name: Build project
+      run: pnpm run build
