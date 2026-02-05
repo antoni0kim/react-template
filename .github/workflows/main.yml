@@ -35,7 +35,7 @@ jobs:
       run: pnpm run test:unit
 
     - name: Run e2e tests in Chromium
-      run: pnpm run test:e2e
-      
+      run: pnpm exec playwright test --project=chromium
+
     - name: Build project
       run: pnpm run build
